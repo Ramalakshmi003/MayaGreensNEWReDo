@@ -1,12 +1,15 @@
 import React from 'react'
-import {Text, View} from 'react-native';
+import NavigationPage from './Navigation';
+// import LoginScreen from './Screens/LoginScreen';
 
 
 const App = () => {
     return(
-        <View>
-            <Text>Hi</Text>
-        </View>
+
+            <NavigationPage/>
+    
+        
+    //    <LoginScreen />
     )
 }
 export default App;
