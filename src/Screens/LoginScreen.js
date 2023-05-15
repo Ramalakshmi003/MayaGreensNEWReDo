@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Fontisto";
 import Icons from 'react-native-vector-icons/AntDesign'
-import ButtonGrey1 from "../components/Component/ButtonGrey1";
+import ButtonGrey1 from "../component/Component/ButtonGrey1";
 // import { useNavigation } from "@react-navigation/native";
 
 export default function LoginScreen({navigation}) {
@@ -67,7 +67,7 @@ export default function LoginScreen({navigation}) {
     >
       <TouchableOpacity
         style={{
-          height: 45,
+          height: 50,
           width: 300,
           borderRadius: 25,
           backgroundColor: "grey",
@@ -77,7 +77,7 @@ export default function LoginScreen({navigation}) {
         <Text
           style={{
             textAlign: "center",
-            top: 7,
+            top: 9,
             fontSize: 20,
             fontWeight: 700,
             color: "white"
