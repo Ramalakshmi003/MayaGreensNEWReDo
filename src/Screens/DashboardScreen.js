@@ -80,7 +80,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         //   alignSelf:"center",
         textAlign: 'center',
-        fontSize: 16,
+        fontSize: 18,
+        color : 'black',
+         fontWeight : 700
     },
     linearGradient: {
         // alignItems: 'center',

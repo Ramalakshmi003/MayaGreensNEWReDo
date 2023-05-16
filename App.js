@@ -1,16 +1,15 @@
 import React from 'react'
-import NavigationPage from './Navigation';
-import DrawerNavigation from './Navigation';
-import { NavigationContainer } from '@react-navigation/native';
+import NavigationPage from './src/Screens/navigation/Navigation';
+// import DashboardScreen from './src/Screens/DashboardScreen';
+// import DrawerNavigation from './Navigation';
+// import { NavigationContainer } from '@react-navigation/native';
 // import LoginScreen from './Screens/LoginScreen';
 
 
 const App = () => {
     return(
-        <NavigationContainer>
-            {/* <DrawerNavigation /> */}
-            <NavigationPage />
-        </NavigationContainer>
+        <NavigationPage />
+        // <DashboardScreen />
     )
 }
 export default App;
