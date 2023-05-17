@@ -35,7 +35,7 @@ function NavigationPage() {
   function DrawerNavigator() {
     return (
       <Drawer.Navigator initialRouteName="Dashboard">
-        <Drawer.Screen name="dashboard" component={DashboardScreen} />
+        <Drawer.Screen name="Dashboard" component={DashboardScreen} />
         <Drawer.Screen name="irrigation" component={IrrigationScreen} />
         <Drawer.Screen name="weather" component={WeatherScreen} />
         <Drawer.Screen name="fertigation" component={FertigationScreen} />

@@ -1,17 +1,83 @@
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView, FlatList } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/Feather'
 import Icons from 'react-native-vector-icons/FontAwesome'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Motor1Data from '../component/Component/Motor1Data'
+import TowerIcon from 'react-native-vector-icons/FontAwesome5'
+import ClockIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export default function IrrigationScreen() {
-
+  const [toggle, setToggle] = useState(false);
   const [isExpanded1, setIsExpanded1] = useState(false);
   const [isExpanded2, setIsExpanded2] = useState(false);
+  const [selectedTab, setSelectedTab] = useState('');
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
+
+
 
   const handleToggle1 = () => {
     setIsExpanded1(!isExpanded1);
+  };
+
+  const handleTabPress = (tab) => {
+    setSelectedTab(tab);
+  };
+
+  const renderItem = ({ item }) => (
+
+    <View style={styles.item}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+            <View>
+              <Text style={styles.title}>{item.valveName}</Text>
+              <Text style={styles.title}>{item.direction}</Text>
+            </View>
+            <TowerIcon style={{ left: 3 }} name='broadcast-tower' size={22} color='black' />
+            <TouchableOpacity
+              style={[styles.button, toggle ? styles.activeButton : styles.inactiveButton, { left: 4 }]}
+              onPress={handleToggle}>
+              <Text style={styles.buttonText}>{toggle ? 'ON' : 'OFF'}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+            <Image resizeMode='contain' style={{ height: 40, width: 50 }} source={{ uri: 'https://img.icons8.com/?size=1x&id=bQwvmPfjcQeL&format=png' }} />
+            <View>
+              <ClockIcon style={{ left: 3, top : 4 }} name='timer-outline' size={32} color='black' />
+              <Text style={{ fontSize: 12, color: 'red' }}>00:00</Text>
+            </View>
+            <Icons style={{ left: 3, top : 4 }} name='flash' size={32} color='black' />
+          </View>
+    </View>
+  );
+
+  function valvetab() {
+    return (
+      <FlatList
+        data={Motor1Data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+      />
+    )
+  }
+
+  const renderTabContent = () => {
+    switch (selectedTab) {
+      case 'valve':
+        return valvetab();
+      case 'sensor':
+        return <Text>sensor1</Text>;
+      case 'group':
+        return <Text>group1</Text>;
+      case 'filter':
+        return <Text>filter1</Text>;
+      default:
+        return null;
+    }
   };
 
   const handleToggle2 = () => {
@@ -48,7 +114,7 @@ export default function IrrigationScreen() {
 
 
   return (
-    <LinearGradient style={styles.linearGradient} colors={['grey', 'white', 'grey']} >
+    <LinearGradient style={styles.linearGradient} colors={['grey', 'white']} >
       <View style={styles.topCard}>
         <View style={{ top: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <Text style={{ left: 10, paddingBottom: 6, textAlign: 'center', color: 'black', fontSize: 22, fontWeight: '700', color: 'black', letterSpacing: 1 }}>Test Farm</Text>
@@ -115,8 +181,24 @@ export default function IrrigationScreen() {
 
         <View>
           {isExpanded1 && (
-            <View style={styles.messageContainer}>
-              <Text style={styles.messageText}>Hi</Text>
+            <View>
+              <View style={styles.tabContainer}>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('valve')}>
+                  <Text style={styles.tabText}>Valve</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('sensor')}>
+                  <Text style={styles.tabText}>Sensor</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('group')}>
+                  <Text style={styles.tabText}>Group</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('filter')}>
+                  <Text style={styles.tabText}>Filter</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                {renderTabContent()}
+              </View>
             </View>
           )}
         </View>
@@ -186,14 +268,16 @@ export default function IrrigationScreen() {
   )
 }
 const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 16,
+    paddingHorizontal: 8,
+  },
+
   linearGradient: {
     height: '100%',
     width: '100%',
-    // margin : 10
-    // left : 15
-    // flex: 1,
-    // alignItems: 'center',
   },
+
   topCard: {
     height: 120,
     width: '95%',
@@ -205,6 +289,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 10,
   },
+
   CenterCard: {
     height: 340,
     width: '95%',
@@ -214,11 +299,82 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 15,
     alignSelf: 'center',
-
   },
+
   separator: {
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
     marginVertical: 10,
   },
+
+  card: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 16,
+    marginBottom: 16,
+  },
+
+  arrowContainer: {
+    alignItems: 'flex-end',
+  },
+
+  tabContainer: {
+    marginTop: 8,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginVertical: 10,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+
+  tabItem: {
+    padding: 16,
+  },
+
+  tabText: {
+    fontSize: 18,
+    color: 'black',
+    fontWeight: 600
+  },
+
+  item: {
+    flex: 1,
+    backgroundColor: 'white',
+    height: 130,
+    width: '45%',
+    borderRadius: 10,
+    margin: 10,
+    padding: 20,
+  },
+
+  title: {
+    fontSize: 14,
+    color: 'black',
+    fontWeight: 600
+  },
+
+  button: {
+    height: 25,
+    width: 40,
+    borderRadius: 4,
+  },
+
+  activeButton: {
+    backgroundColor: 'green',
+  },
+
+  inactiveButton: {
+    backgroundColor: 'red',
+  },
+
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+
 })

@@ -1,13 +1,27 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
 import Icon from "react-native-vector-icons/Fontisto";
 import Icons from 'react-native-vector-icons/AntDesign'
 import ButtonGrey1 from "../component/Component/ButtonGrey1";
 // import { useNavigation } from "@react-navigation/native";
 
+
+
 export default function LoginScreen({navigation}) {
     // const navigation = useNavigation();
     const [mobileNumber, onChangeMobileNumber] = useState("");
+
+    const handleOnpress =  () => {
+        if(mobileNumber.length == 10){
+            if(mobileNumber == '9677398605'){
+                navigation.navigate('otp')
+            }else {
+                Alert.alert('Warning, Enter the correct number')
+            }
+        }
+        // console.log({mobileNumber})
+    }
+    
     return (
         <View style={{ flex: 1 }}>
             <View style={{ backgroundColor: "white", height: "100%", width: "100%" }}>
@@ -72,7 +86,7 @@ export default function LoginScreen({navigation}) {
           borderRadius: 25,
           backgroundColor: "grey",
           top: 160
-        }} onPress={()=>navigation.navigate('otp')}
+        }} onPress={() => handleOnpress()}
       >
         <Text
           style={{
@@ -101,6 +115,8 @@ const styles = StyleSheet.create({
         height: 40,
         width : 220,
         margin: 12,
-        padding: 10
+        padding: 10,
+        fontSize : 20,
+        color : 'black',
     }
 });

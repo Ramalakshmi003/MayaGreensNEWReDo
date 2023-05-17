@@ -5,72 +5,85 @@ import {
   Image,
   StyleSheet,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity, Alert
 } from "react-native";
 import Icon from "react-native-vector-icons/Fontisto";
 
-export default function OtpVerficationScreen({navigation}) {
+export default function OtpVerficationScreen({ navigation }) {
 
-  const [number1, setNumber1] = useState("");
-  const [number2, setNumber2] = useState("");
-  const [number3, setNumber3] = useState("");
-  const [number4, setNumber4] = useState("");
+  const [timer, setTimer] = useState(30);
+  const [code1, setCode1] = useState('');
+  const [code2, setCode2] = useState('');
+  const [code3, setCode3] = useState('');
+  const [code4, setCode4] = useState('');
+  const [verifyEnabled, setVerifyEnabled] = useState(false);
+  const [resendEnabled, setResendEnabled] = useState(false);
 
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
   const inputRef3 = useRef(null);
   const inputRef4 = useRef(null);
 
-  const [timeRemaining, setTimeRemaining] = useState(30);
-  const [timer, setTimer] = useState(null);
-
   useEffect(() => {
-    setTimer(
-      setInterval(() => {
-        setTimeRemaining((prevTime) => prevTime - 1);
-      }, 1000)
-    );
+    // Start the timer countdown
+    const interval = setInterval(() => {
+      setTimer((prevTimer) => prevTimer - 1);
+    }, 1000);
 
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    if (timeRemaining === 0) {
-      clearInterval(timer);
+    // Handle timer reaching 0
+    if (timer === 0) {
+      setVerifyEnabled(false);
+      setResendEnabled(true);
+      clearInterval(interval);
     }
-  }, [timeRemaining]);
 
-  // useEffect(() => {
-  //   var timer = setInterval(() => {
-  //     setTimeRemaining(prevTime => prevTime - 1);
-  //   }, 1000);
+    return () => clearInterval(interval); // Cleanup the interval on component unmount
+  }, [timer]);
 
-  //   return () => clearInterval(timer);
-  // }, []);
+  useEffect(() => {
+    // Check if all codes are valid and enable/disable buttons accordingly
+    if (code1 === '1' && code2 === '1' && code3 === '1' && code4 === '1' && timer > 0) {
+      setVerifyEnabled(true);
+    } else {
+      setVerifyEnabled(false);
+    }
+  }, [code1, code2, code3, code4, timer]);
 
-  // useEffect(() => {
-  //   if (timeRemaining === 0) {
-  //     clearInterval();
-  //   }
-  // }, [timeRemaining]);
+  const handleVerify = () => {
+    if (code1 === '1' && code2 === '1' && code3 === '1' && code4 === '1') {
+      Alert.alert('Success', 'Verification successful');
+      navigation.navigate('dashboard');
+    } else {
+      Alert.alert('Failure', 'Verification failed');
+    }
+  };
+
+  const handleResend = () => {
+    setCode1('');
+    setCode2('');
+    setCode3('');
+    setCode4('');
+    setTimer(30);
+    setResendEnabled(false);
+  };
 
   const handleInputChange1 = (text) => {
-    setNumber1(text);
+    setCode1(text);
     inputRef2.current.focus();
   };
 
   const handleInputChange2 = (text) => {
-    setNumber2(text);
+    setCode2(text);
     inputRef3.current.focus();
   };
 
   const handleInputChange3 = (text) => {
-    setNumber3(text);
+    setCode3(text);
     inputRef4.current.focus();
   };
 
   const handleInputChange4 = (text) => {
-    setNumber4(text);
+    setCode4(text);
   };
 
   return (
@@ -100,7 +113,7 @@ export default function OtpVerficationScreen({navigation}) {
             <Icon style={{ top: 10 }} name="clock" size={24} color="grey" />
             <Text style={{ fontSize: 18, padding: 10 }}>
               <Text style={{ backgroundColor: "red", height: 20, width: 30 }}>
-                {timeRemaining}
+                {timer}
               </Text>{" "}
               sec
             </Text>
@@ -125,7 +138,7 @@ export default function OtpVerficationScreen({navigation}) {
           >
             <TextInput
               ref={inputRef1}
-              value={number1}
+              value={code1}
               onChangeText={handleInputChange1}
               style={styles.input}
               placeholder="-"
@@ -134,7 +147,7 @@ export default function OtpVerficationScreen({navigation}) {
             />
             <TextInput
               ref={inputRef2}
-              value={number2}
+              value={code2}
               onChangeText={handleInputChange2}
               style={styles.input}
               placeholder="-"
@@ -143,7 +156,7 @@ export default function OtpVerficationScreen({navigation}) {
             />
             <TextInput
               ref={inputRef3}
-              value={number3}
+              value={code3}
               onChangeText={handleInputChange3}
               style={styles.input}
               placeholder="-"
@@ -152,7 +165,7 @@ export default function OtpVerficationScreen({navigation}) {
             />
             <TextInput
               ref={inputRef4}
-              value={number4}
+              value={code4}
               onChangeText={handleInputChange4}
               style={styles.input}
               placeholder="-"
@@ -169,7 +182,8 @@ export default function OtpVerficationScreen({navigation}) {
           }}
         >
           <TouchableOpacity
-           onPress={() => navigation.navigate('dashboard')}
+            onPress={handleVerify}
+            disabled = {!verifyEnabled}
             style={{
               height: 50,
               width: 300,
@@ -177,7 +191,6 @@ export default function OtpVerficationScreen({navigation}) {
               backgroundColor: "grey",
               top: 160
             }}
-            disabled={(number1 || number2 || number3 || number4) == null}
           >
             <Text
               style={{
@@ -200,6 +213,8 @@ export default function OtpVerficationScreen({navigation}) {
           }}
         >
           <TouchableOpacity
+            onPress={handleResend}
+            disabled = {!resendEnabled}
             style={{
               height: 50,
               width: 300,
@@ -230,11 +245,13 @@ export default function OtpVerficationScreen({navigation}) {
 
 const styles = StyleSheet.create({
   input: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     borderBottomColor: "grey",
     height: 50,
-    width: 30,
+    width: 50,
     margin: 12,
-    paddingLeft: 10
+    paddingLeft: 10,
+    fontSize: 24,
+    textAlign: 'center'
   }
 });
