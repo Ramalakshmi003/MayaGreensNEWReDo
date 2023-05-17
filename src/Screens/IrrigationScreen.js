@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/Feather'
 import Icons from 'react-native-vector-icons/FontAwesome'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Motor1Data from '../component/Component/Motor1Data'
+import Motor1Data from '../component/Data/Motor1Data'
 import TowerIcon from 'react-native-vector-icons/FontAwesome5'
 import ClockIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
@@ -31,26 +31,26 @@ export default function IrrigationScreen() {
   const renderItem = ({ item }) => (
 
     <View style={styles.item}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-            <View>
-              <Text style={styles.title}>{item.valveName}</Text>
-              <Text style={styles.title}>{item.direction}</Text>
-            </View>
-            <TowerIcon style={{ left: 3 }} name='broadcast-tower' size={22} color='black' />
-            <TouchableOpacity
-              style={[styles.button, toggle ? styles.activeButton : styles.inactiveButton, { left: 4 }]}
-              onPress={handleToggle}>
-              <Text style={styles.buttonText}>{toggle ? 'ON' : 'OFF'}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-            <Image resizeMode='contain' style={{ height: 40, width: 50 }} source={{ uri: 'https://img.icons8.com/?size=1x&id=bQwvmPfjcQeL&format=png' }} />
-            <View>
-              <ClockIcon style={{ left: 3, top : 4 }} name='timer-outline' size={32} color='black' />
-              <Text style={{ fontSize: 12, color: 'red' }}>00:00</Text>
-            </View>
-            <Icons style={{ left: 3, top : 4 }} name='flash' size={32} color='black' />
-          </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+        <View>
+          <Text style={styles.title}>{item.valveName}</Text>
+          <Text style={styles.title}>{item.direction}</Text>
+        </View>
+        <TowerIcon style={{ left: 3 }} name={item.tower} size={22} color='black' />
+        <TouchableOpacity
+          style={[styles.button, toggle ? styles.activeButton : styles.inactiveButton, { left: 4 }]}
+          onPress={handleToggle}>
+          <Text style={styles.buttonText}>{toggle ? 'ON' : 'OFF'}</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+        <Image resizeMode='contain' style={{ height: 40, width: 50 }} source={{ uri: 'https://img.icons8.com/?size=1x&id=bQwvmPfjcQeL&format=png' }} />
+        <View>
+          <ClockIcon style={{ left: 3, top: 4 }} name='timer-outline' size={32} color='black' />
+          <Text style={{ fontSize: 12, color: 'red' }}>00:00</Text>
+        </View>
+        <Icons style={{ left: 3, top: 4 }} name={item.thunder} size={32} color='black' />
+      </View>
     </View>
   );
 

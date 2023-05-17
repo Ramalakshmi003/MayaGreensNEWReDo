@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import DashboardData from '../component/Component/DashboardData'
+import DashboardData from '../component/Data/DashboardData'
 import LinearGradient from 'react-native-linear-gradient'
 
 
