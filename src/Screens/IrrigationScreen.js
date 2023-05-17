@@ -7,6 +7,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Motor1Data from '../component/Data/Motor1Data'
 import TowerIcon from 'react-native-vector-icons/FontAwesome5'
 import ClockIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Moto1Sensor from '../component/Component/Moto1Sensor'
+import Motor1Group from '../component/Component/Motor1Group'
 
 export default function IrrigationScreen() {
   const [toggle, setToggle] = useState(false);
@@ -70,9 +72,9 @@ export default function IrrigationScreen() {
       case 'valve':
         return valvetab();
       case 'sensor':
-        return <Text>sensor1</Text>;
+        return Moto1Sensor();
       case 'group':
-        return <Text>group1</Text>;
+        return Motor1Group();
       case 'filter':
         return <Text>filter1</Text>;
       default:
@@ -184,16 +186,16 @@ export default function IrrigationScreen() {
             <View>
               <View style={styles.tabContainer}>
                 <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('valve')}>
-                  <Text style={styles.tabText}>Valve</Text>
+                  <Text style={styles.tabText}>VALVE</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('sensor')}>
-                  <Text style={styles.tabText}>Sensor</Text>
+                  <Text style={styles.tabText}>SENSOR</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('group')}>
-                  <Text style={styles.tabText}>Group</Text>
+                  <Text style={styles.tabText}>GROUP</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('filter')}>
-                  <Text style={styles.tabText}>Filter</Text>
+                  <Text style={styles.tabText}>FILTER</Text>
                 </TouchableOpacity>
               </View>
               <View>
@@ -223,7 +225,7 @@ export default function IrrigationScreen() {
               <TouchableOpacity style={{ height: 70, width: 70, backgroundColor: 'red', borderRadius: 10, alignItems: 'center' }}>
                 <Image resizeMode='contain' style={{ top: 5, height: 60, width: 60 }} source={{ uri: 'https://cdn.pixabay.com/photo/2020/09/14/04/52/motor-5569977_640.png' }} />
               </TouchableOpacity>
-              <Text style={{ top: 5, paddingBottom: 6, color: 'black', fontSize: 22, fontWeight: '700', color: 'black', letterSpacing: 1, textAlign: 'center' }}>Motor-1</Text>
+              <Text style={{ top: 5, paddingBottom: 6, color: 'black', fontSize: 22, fontWeight: '700', color: 'black', letterSpacing: 1, textAlign: 'center' }}>Motor-2</Text>
             </View>
             <View>
               <Text style={{ top: 5, margin: 3, paddingBottom: 6, color: 'black', fontSize: 20, fontWeight: '700', color: 'black', letterSpacing: 1, textAlign: 'center' }}>STATUS</Text>
