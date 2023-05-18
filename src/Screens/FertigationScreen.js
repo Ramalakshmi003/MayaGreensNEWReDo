@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function FertigationScreen() {
+const FertigationScreen = () => {
   return (
     <View>
       <Text>FertigationScreen</Text>
     </View>
   )
 }
+
+export default FertigationScreen

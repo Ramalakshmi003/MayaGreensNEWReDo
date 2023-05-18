@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React, {useState} from 'react'
 
-export default function Motor1Group() {
+const Motor1Group = () => {
     const [selectedTab, setSelectedTab] = useState('');
 
     const handleTabPress = (tab) => {
@@ -53,6 +53,8 @@ export default function Motor1Group() {
         </View>
     )   
 }
+
+export default Motor1Group;
 
 const styles = StyleSheet.create({
     tabContainer: {

@@ -3,17 +3,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LoginScreen from "../LoginScreen";
-import OtpVerficationScreen from "../OtpVerficationScreen";
-import DashboardScreen from "../DashboardScreen";
-import IrrigationScreen from "../IrrigationScreen";
-import WeatherScreen from "../WeatherScreen";
-import FertigationScreen from "../FertigationScreen";
-import FarmControlScreen from "../FarmControlScreen";
-import ForcastScreen from "../ForcastScreen";
-import CropsScreen from "../CropsScreen";
-import MargetPlaceScreen from "../MargetPlaceScreen";
-import SupportScreen from "../SupportScreen";
+import LoginScreen from "../Screens/LoginScreen";
+import OtpVerficationScreen from "../Screens/OtpVerficationScreen";
+import DashboardScreen from "../Screens/DashboardScreen";
+import IrrigationScreen from "../Screens/IrrigationScreen";
+import WeatherScreen from "../Screens/WeatherScreen";
+import FertigationScreen from "../Screens/FertigationScreen";
+import FarmControlScreen from "../Screens/FarmControlScreen";
+import ForcastScreen from "../Screens/ForcastScreen";
+import CropsScreen from "../Screens/CropsScreen";
+import MargetPlaceScreen from "../Screens/MargetPlaceScreen";
+import SupportScreen from "../Screens/SupportScreen";
 
 
 const Drawer = createDrawerNavigator();
@@ -23,11 +23,11 @@ const Stack = createStackNavigator();
 function NavigationPage() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="irrigation">
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="otp" component={OtpVerficationScreen} options={{ headerShown: false }} />
           <Stack.Screen name="dashboard" component={DrawerNavigator} options={{ headerShown: false }} />
-          <Stack.Screen name="irrigation" component={IrrigationScreen} />
+          {/* <Stack.Screen name="irrigation" component={IrrigationScreen} /> */}
         </Stack.Navigator>
       </NavigationContainer>
     );

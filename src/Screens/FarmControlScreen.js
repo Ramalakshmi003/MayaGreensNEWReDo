@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function FarmControlScreen() {
+const FarmControlScreen = () => {
   return (
     <View>
       <Text>FarmControlScreen</Text>
     </View>
   )
 }
+
+export default FarmControlScreen
