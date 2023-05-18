@@ -23,10 +23,11 @@ const Stack = createStackNavigator();
 function NavigationPage() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="irrigation">
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="otp" component={OtpVerficationScreen} options={{ headerShown: false }} />
           <Stack.Screen name="dashboard" component={DrawerNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="irrigation" component={IrrigationScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

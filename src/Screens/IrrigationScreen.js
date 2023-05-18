@@ -72,9 +72,9 @@ export default function IrrigationScreen() {
       case 'valve':
         return valvetab();
       case 'sensor':
-        return Moto1Sensor();
+        return <Moto1Sensor /> // need to render as tag
       case 'group':
-        return Motor1Group();
+        return <Motor1Group />
       case 'filter':
         return <Text>filter1</Text>;
       default:
