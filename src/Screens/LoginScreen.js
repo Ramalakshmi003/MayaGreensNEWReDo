@@ -48,7 +48,8 @@ export default function LoginScreen({navigation}) {
                         style={{
                             color: "grey",
                             fontSize: 22,
-                            left : 15
+                            left : 15,
+                            fontFamily: "Roboto-BoldItalic"
                         }}
                     >
                         Phone Number :
@@ -94,7 +95,8 @@ export default function LoginScreen({navigation}) {
             top: 9,
             fontSize: 20,
             fontWeight: 700,
-            color: "white"
+            color: "white",
+            // fontFamily : 'DancingScript-VariableFont_wght'
           }}
         >
           Login

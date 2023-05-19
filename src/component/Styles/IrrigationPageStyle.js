@@ -237,12 +237,44 @@ export const IrrigationPageStyle =  {
       modeText : { 
         top: 3, 
         margin: 3, 
-        paddingBottom: 6, 
+        // paddingBottom: 6, 
         color: 'black', 
-        fontSize: 20, 
+        fontSize: 18, 
         fontWeight: '700', 
         color: 'black', 
         textAlign: 'center' 
       },
+      motor1GroupManualCard : {
+      
+        width : '95%',
+        // justifyContent : 'center',
+        alignSelf : 'center',
+        backgroundColor : 'white',
+        borderRadius : 10,
+      },
+      tabBTNGreen : {
+        height : 50,
+        backgroundColor : '#093301',
+        borderRadius : 5,
+      },
+      tabBTNGreenText : {
+        color : 'white',
+        fontWeight : 800,
+        textAlign : 'center',
+        top : 10,
+        fontSize : 18
+      },
+      motorImgFilter : {
+        height : 150,
+        width : 330,
+        alignSelf : 'center'
+      },
+      textInputstyle : {
+        height : 40,
+        width : 110,
+        borderColor : 'orange',
+        borderRadius : 10, 
+        borderWidth : 2
+      }
     
 }

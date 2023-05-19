@@ -12,9 +12,10 @@ import Motor1Group from '../component/Component/Motor1Group'
 import Motor1Valve from '../component/Component/Motor1Valve'
 import { IrrigationPageStyle } from '../component/Styles/IrrigationPageStyle'
 import { Gap } from './DashboardScreen'
+import Motor1Filter from '../component/Component/Motor1Filter'
 
 
-const separator = () => {
+export const separator = () => {
   return (
     <View style={IrrigationPageStyle.separator} />
   )
@@ -92,7 +93,7 @@ export default function IrrigationScreen() {
       case 'group':
         return <Motor1Group />
       case 'filter':
-        return <Text>filter1</Text>;
+        return <Motor1Filter />
       default:
         return null;
     }

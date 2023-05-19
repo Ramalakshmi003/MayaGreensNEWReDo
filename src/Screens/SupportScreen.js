@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function SupportScreen() {
+const SupportScreen = () => {
   return (
     <View>
-      <Text>SupportScreen</Text>
+      <Text style = {{fontFamily : 'DancingScript-VariableFont_wght'}}>SupportScreen</Text>
     </View>
   )
 }
+
+export default SupportScreen

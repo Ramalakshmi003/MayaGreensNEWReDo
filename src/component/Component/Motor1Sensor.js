@@ -12,42 +12,47 @@ const boxHead = (value, signalColor) => {
     )
 }
 
-const graphIcon = () => {
+const graphIcon = (graph) => {
     return (
         <View>
             <Image style={styles.img} source={{ uri: 'https://cdn-icons-png.flaticon.com/128/920/920148.png' }} />
+            <Text style = {{color : 'black'}}>{graph}</Text>
         </View>
     )
 }
 
-const waterLevel = () => {
+const waterLevel = (waterLevel) => {
     return (
         <View>
             <Image style={styles.img} source={{ uri: 'https://cdn-icons-png.flaticon.com/128/505/505439.png' }} />
+            <Text style = {{color : 'black', textAlign : 'center', fontWeight : 500}}>{waterLevel}</Text>
         </View>
     )
 }
 
-const batteryLow = () => {
+const batteryLow = (batteryLowPercent) => {
     return (
         <View>
             <Image style={styles.img} source={{ uri: 'https://cdn-icons-png.flaticon.com/128/7078/7078135.png' }} />
+            <Text style = {{color : 'black', textAlign : 'center', fontWeight : 500}}>{batteryLowPercent}</Text>
         </View>
     )
 }
 
-const batteryFull = () => {
+const batteryFull = (batteryHighPercent) => {
     return (
         <View>
             <Image style={styles.img} source={{ uri: 'https://cdn-icons-png.flaticon.com/128/7078/7078149.png' }} />
+            <Text style = {{color : 'black', textAlign : 'center', fontWeight : 500}}>{batteryHighPercent}</Text>
         </View>
     )
 }
 
-const pressureCage = () => {
+const pressureCage = (pressureVal) => {
     return (
         <View>
             <Image style={styles.img} source={{ uri: 'https://cdn-icons-png.flaticon.com/128/5444/5444862.png' }} />
+            <Text style = {{color : 'black', textAlign : 'center', fontWeight : 500}}>{pressureVal}</Text>
         </View>
     )
 }
@@ -59,17 +64,17 @@ const Motor1Sensor = () => {
             <View style={styles.item}>
                 {boxHead('Water Level', 'red')}
                 <View style={styles.bottomImgs}>
-                    {waterLevel()}
-                    {graphIcon()}
-                    {batteryLow()}
+                    {waterLevel('50%')}
+                    {graphIcon('View')}
+                    {batteryLow('9%')}
                 </View>
             </View>
             <View style={styles.item}>
                 {boxHead('Pressure', 'black')}
                 <View style={styles.bottomImgs}>
-                    {pressureCage()}
-                    {graphIcon()}
-                    {batteryFull()}
+                    {pressureCage('0 Psi')}
+                    {graphIcon('View')}
+                    {batteryFull('90%')}
                 </View>
             </View>
         </View>
