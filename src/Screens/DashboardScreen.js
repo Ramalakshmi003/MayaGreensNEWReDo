@@ -17,14 +17,16 @@ const userDetailsCard = (userName, userMobileNo1, userMobileNo2, userImage) => {
     )
 }
 
-const userFarmDetails = (userFarmName,temperature) => {
+const userFarmDetails = (userFarmName, temperature) => {
+    const degreeSymbol = String.fromCharCode(176);
     return (
         <View style={DashboardScreenStyles.centerCard}>
-            <Text style={[DashboardScreenStyles.header1,{left :15}]}>{userFarmName}</Text>
+            <Text style={[DashboardScreenStyles.header1, { left: 15 }]}>{userFarmName}</Text>
             <View style={{ right: 20, flexDirection: 'row', justifyContent: 'space-around' }}>
                 <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp53HfW_t-wd5SZLNsoPNgf5h8AeFhVDC94g&usqp=CAU' }} style={{ height: 50, width: 50 }} resizeMode='cover' />
                 {/* <Text style={DashboardScreenStyles.text}>{temperature}<Text style={DashboardScreenStyles.superscript}>o</Text>C</Text> */}
-                <Text style={{ top: 10, color: 'black', fontSize: 20, fontWeight: 'bold', letterSpacing: 1, }}>  28 <Text style={{ fontSize: 14, marginBottom: 20 }}>o</Text> C</Text>
+                {/* <Text style={{ top: 10, color: 'black', fontSize: 20, fontWeight: 'bold', letterSpacing: 1, }}>  28  C</Text> */}
+                <Text style={{ top: 10, color: 'black', fontSize: 20, fontWeight: 'bold', letterSpacing: 1, }}>25{degreeSymbol}C</Text>
             </View>
         </View>
     )
@@ -45,7 +47,7 @@ const DashboardScreen = ({ navigation }) => {
                 <View>
                     {userDetailsCard('Test - 1', '8526187881', '8610794589', 'https://media.istockphoto.com/id/1334408594/photo/farmer-in-the-field.jpg?s=612x612&w=0&k=20&c=L-oyfEPkHqy97AcnN8sD13Opdwaa9VfXQJBQc0svYCg=')}
                     {Gap()}
-                    {userFarmDetails('Test Farm','28')}
+                    {userFarmDetails('Test Farm', '28')}
                     {/* <View><Text></Text></View> */}
                     <View style={{ top: 10, botton: 20 }}>
                         <View style={{ flex: 4, flexDirection: "row", flexWrap: 'wrap' }}>

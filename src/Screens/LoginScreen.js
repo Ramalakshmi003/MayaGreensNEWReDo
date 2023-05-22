@@ -7,14 +7,14 @@ import ButtonGrey1 from "../component/Component/ButtonGrey1";
 
 
 
-export default function LoginScreen({navigation}) {
+const LoginScreen = ({navigation}) => {
     // const navigation = useNavigation();
     const [mobileNumber, onChangeMobileNumber] = useState("");
 
     const handleOnpress =  () => {
         if(mobileNumber.length == 10){
             if(mobileNumber == '9677398605'){
-                navigation.navigate('otp')
+                navigation.navigate('OTPVerification')
             }else {
                 Alert.alert('Warning, Enter the correct number')
             }
@@ -110,6 +110,7 @@ export default function LoginScreen({navigation}) {
     )
 }
 
+export default LoginScreen
 const styles = StyleSheet.create({
     input: {
         borderBottomWidth: 1,

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Fontisto";
 
-export default function OtpVerficationScreen({ navigation }) {
+const OtpVerficationScreen = ({ navigation }) => {
 
   const [timer, setTimer] = useState(30);
   const [code1, setCode1] = useState('');
@@ -242,6 +242,8 @@ export default function OtpVerficationScreen({ navigation }) {
     </View>
   )
 }
+
+export default OtpVerficationScreen
 
 const styles = StyleSheet.create({
   input: {

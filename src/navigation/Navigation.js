@@ -23,9 +23,9 @@ const Stack = createStackNavigator();
 function NavigationPage() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="otp" component={OtpVerficationScreen} options={{ headerShown: false }} />
+        <Stack.Navigator initialRouteName="LOGIN">
+          <Stack.Screen name="LOGIN" component={LoginScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="OTPVerification" component={OtpVerficationScreen} options={{ headerShown: false }} />
           <Stack.Screen name="dashboard" component={DrawerNavigator} options={{ headerShown: false }} />
           {/* <Stack.Screen name="irrigation" component={IrrigationScreen} /> */}
         </Stack.Navigator>
@@ -35,16 +35,16 @@ function NavigationPage() {
   
   function DrawerNavigator() {
     return (
-      <Drawer.Navigator initialRouteName="Dashboard">
-        <Drawer.Screen name="Dashboard" component={DashboardScreen} />
-        <Drawer.Screen name="irrigation" component={IrrigationScreen} />
-        <Drawer.Screen name="weather" component={WeatherScreen} />
-        <Drawer.Screen name="fertigation" component={FertigationScreen} />
-        <Drawer.Screen name="farmControl" component={FarmControlScreen} />
-        <Drawer.Screen name="forcast" component={ForcastScreen} />
-        <Drawer.Screen name="crops" component={CropsScreen} />
-        <Drawer.Screen name="market" component={MargetPlaceScreen} />
-        <Drawer.Screen name="support" component={SupportScreen} />
+      <Drawer.Navigator initialRouteName="DASHBOARD">
+        <Drawer.Screen name="DASHBOARD" component={DashboardScreen} />
+        <Drawer.Screen name="IRRIGATION" component={IrrigationScreen} />
+        <Drawer.Screen name="WEATHER" component={WeatherScreen} />
+        <Drawer.Screen name="FERTIGATION" component={FertigationScreen} />
+        <Drawer.Screen name="FARM CONTROL" component={FarmControlScreen} />
+        <Drawer.Screen name="FORCAST" component={ForcastScreen} />
+        <Drawer.Screen name="CROPS" component={CropsScreen} />
+        <Drawer.Screen name="MARKET" component={MargetPlaceScreen} />
+        <Drawer.Screen name="SUPPORT" component={SupportScreen} />
       </Drawer.Navigator>
     );
   }

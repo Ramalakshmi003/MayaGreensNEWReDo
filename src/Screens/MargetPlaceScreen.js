@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function MargetPlaceScreen() {
+const MargetPlaceScreen = () => {
   return (
     <View>
       <Text>MargetPlaceScreen</Text>
     </View>
   )
 }
+export default MargetPlaceScreen

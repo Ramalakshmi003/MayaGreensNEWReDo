@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function ForcastScreen() {
+const ForcastScreen = () => {
   return (
     <View>
       <Text>ForcastScreen</Text>
     </View>
   )
 }
+export default ForcastScreen
