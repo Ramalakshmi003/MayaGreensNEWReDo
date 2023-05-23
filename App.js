@@ -1,5 +1,8 @@
 import React from 'react'
 import NavigationPage from './src/navigation/Navigation';
+import { Provider } from 'react-redux';
+import SupportScreen from './src/Screens/SupportScreen';
+import Store from './src/reduxToolkit/store/Store';
 // import DashboardScreen from './src/Screens/DashboardScreen';
 // import DrawerNavigation from './Navigation';
 // import { NavigationContainer } from '@react-navigation/native';
@@ -8,7 +11,10 @@ import NavigationPage from './src/navigation/Navigation';
 
 const App = () => {
     return(
-        <NavigationPage />
+        <Provider store = {Store}>
+            <SupportScreen />
+        </Provider>
+        // <NavigationPage />
         // <DashboardScreen />
     )
 }

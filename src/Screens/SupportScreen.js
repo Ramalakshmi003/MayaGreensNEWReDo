@@ -4,16 +4,20 @@ import EditIcon from 'react-native-vector-icons/Feather'
 import DeleteIcon from 'react-native-vector-icons/MaterialIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { SupportScreenStyles } from '../component/Styles/SupportScreenStyles'
+import { useSelector,useDispatch } from 'react-redux'
+import { addBook, updateBook, deleteBook, deleteAllBooks } from '../reduxToolkit/sliceReducer/BookReducer'
 
 const SupportScreen = () => {
   const [id, setId] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [book, setBook] = useState([])
+  // const [book, setBook] = useState([])
   const [editIndex, setEditIndex] = useState(null)
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
+  const book = useSelector((state) => state.book);
+  const dispatch = useDispatch();
 
   const handleViewDetails = (book) => {
     setSelectedBook(book);
@@ -50,24 +54,34 @@ const SupportScreen = () => {
   };
 
   const handleAdd = () => {
-    if (editIndex) {
-      const updateBook = book.map((item) => {
-        if (item.id === editIndex) {
-          return { id: item.id, title, description };
-        }
-        return item;
-      });
-      setBook(updateBook);
+    if(editIndex) {
+      dispatch(updateBook({id : editIndex, title, description}));
       setEditIndex(null);
     } else {
-      // const newBookItem = { id, title, description };
-      // const updatedBook = [...book, newBookItem];
-      setBook([...book, { id, title, description }]);
-      // setBook([...book, {id, title, description}]);
+      dispatch(addBook({id, title, description}));
     }
     setId('');
     setTitle('');
-    setDescription('');
+    setDescription('')
+
+    // if (editIndex) {
+    //   const updateBook = book.map((item) => {
+    //     if (item.id === editIndex) {
+    //       return { id: item.id, title, description };
+    //     }
+    //     return item;
+    //   });
+    //   setBook(updateBook);
+    //   setEditIndex(null);
+    // } else {
+    //   // const newBookItem = { id, title, description };
+    //   // const updatedBook = [...book, newBookItem];
+    //   setBook([...book, { id, title, description }]);
+    //   // setBook([...book, {id, title, description}]);
+    // }
+    // setId('');
+    // setTitle('');
+    // setDescription('');
 
     // try {
     //   await AsyncStorage.setItem('book', JSON.stringify(book));
@@ -91,7 +105,9 @@ const SupportScreen = () => {
 
   const handleDeleteIndividualItem = (id) => {
     // console.log(id)
-    setBook(book.filter(e => e.id !== id));
+    dispatch(deleteBook(id));
+    // setBook(book.filter(e => e.id !== id));
+
     // try {
     //   await AsyncStorage.setItem('book', JSON.stringify(book));
     // } catch (error) {
@@ -106,7 +122,9 @@ const SupportScreen = () => {
   }
 
   const handleDeleteAll = () => {
-    setBook([]);
+    dispatch(deleteAllBooks());
+    // setBook([]);
+
     // try {
     //   await AsyncStorage.removeItem('book');
     // } catch (error) {
