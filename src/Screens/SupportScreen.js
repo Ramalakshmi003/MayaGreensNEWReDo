@@ -143,18 +143,18 @@ const SupportScreen = () => {
     )
   }
 
-  const textInputCon = (onchangeTextInput, placeholder, keyType) => {
-    return (
-      <TextInput
-        style={SupportScreenStyles.input}
-        onChangeText={(e) => onchangeTextInput(e)}
-        value={id}
-        placeholder={placeholder}
-        maxLength={10}
-        keyboardType={keyType}
-      />
-    )
-  }
+  // const textInputCon = (onchangeTextInput, placeholder, keyType) => {
+  //   return (
+  //     <TextInput
+  //       style={SupportScreenStyles.input}
+  //       onChangeText={(e) => onchangeTextInput(e)}
+  //       value={id}
+  //       placeholder={placeholder}
+  //       maxLength={10}
+  //       keyboardType={keyType}
+  //     />
+  //   )
+  // }
 
   return (
     <View>
@@ -164,9 +164,30 @@ const SupportScreen = () => {
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Image style={SupportScreenStyles.logo} source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKSBLGRb2YFCayf6J-5UbSLRLuQkMROuMFTQ&usqp=CAU' }} />
             <Text style={SupportScreenStyles.text}>To-Do List</Text>
-            {textInputCon(setId, "Enter the ID", "numeric")}
-            {textInputCon(setTitle, "Enter the title", "name-phone-pad")}
-            {textInputCon(setId, "Enter the description", "name-phone-pad")}
+            <TextInput
+              style={SupportScreenStyles.input}
+              onChangeText={(e) => setId(e)}
+              value={id}
+              placeholder='Enter the ID'
+              keyboardType="numeric"
+            />
+            <TextInput
+              style={SupportScreenStyles.input}
+              onChangeText={(e) => setTitle(e)}
+              value={title}
+              placeholder='Enter the title'
+              keyboardType="name-phone-pad"
+            />
+            <TextInput
+              style={SupportScreenStyles.input}
+              onChangeText={(e) => setDescription(e)}
+              value={description}
+              placeholder='Enter the description'
+              keyboardType="name-phone-pad"
+            />
+            {/* {textInputCon(setId, "Enter the ID", "numeric")} */}
+            {/* {textInputCon(setTitle, "Enter the title", "name-phone-pad")} */}
+            {/* {textInputCon(setId, "Enter the description", "name-phone-pad")} */}
             <TouchableOpacity style={SupportScreenStyles.AddBtn} onPress={() => handleAdd()}>
               <Text style={SupportScreenStyles.btnText}>CREATE or UPDATE</Text>
             </TouchableOpacity>
