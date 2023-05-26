@@ -13,6 +13,7 @@ import Motor1Valve from '../component/Component/Motor1Valve'
 import { IrrigationPageStyle } from '../component/Styles/IrrigationPageStyle'
 import { Gap } from './DashboardScreen'
 import Motor1Filter from '../component/Component/Motor1Filter'
+import { images } from '../assets/images/image'
 
 
 export const separator = () => {
@@ -25,7 +26,7 @@ const powerBtn = () => {
   return (
     <View>
       <TouchableOpacity>
-        <Image resizeMode='contain' style={{ height: 65, width: 65, borderRadius: 35 }} source={{ uri: 'https://cdn.pixabay.com/photo/2017/01/31/17/49/button-2025915_640.png' }} />
+        <Image resizeMode='contain' style={{ height: 65, width: 65, borderRadius: 35 }} source={images.powerImg} />
       </TouchableOpacity>
     </View>
   )
@@ -35,7 +36,7 @@ const calenderImg = (CalenderImg) => {
   return (
     <View>
       <TouchableOpacity>
-        <Image style={{ bottom: 15, height: 85, width: 85 }} source={{ uri: CalenderImg }} />
+        <Image style={{ bottom: 15, height: 85, width: 85 }} source={CalenderImg} />
       </TouchableOpacity>
     </View>
   )
@@ -44,7 +45,7 @@ const calenderImg = (CalenderImg) => {
 const valvenText = (valveImg, pluText) => {
   return (
     <View style={IrrigationPageStyle.valvenTextView}>
-      <Image resizeMode='contain' style={{ height: 55, width: 55 }} source={{ uri: valveImg }} />
+      <Image resizeMode='contain' style={{ height: 55, width: 55 }} source={valveImg} />
       <Text style={IrrigationPageStyle.valvenTexttext}>{pluText}</Text>
     </View>
   )
@@ -54,7 +55,7 @@ const MotorImgName = (motorName, motorImg) => {
   return (
     <View>
       <TouchableOpacity style={IrrigationPageStyle.MotorImg}>
-        <Image resizeMode='contain' style={{ top: 5, height: 60, width: 60 }} source={{ uri: motorImg }} />
+        <Image resizeMode='contain' style={{ top: 5, height: 60, width: 60 }} source={motorImg} />
       </TouchableOpacity>
       <Text style={IrrigationPageStyle.motorName}>{motorName}</Text>
     </View>
@@ -76,12 +77,15 @@ export default function IrrigationScreen() {
   const [isExpanded2, setIsExpanded2] = useState(false);
   const [selectedTab, setSelectedTab] = useState('');
 
+  const [activeTab, setActiveTab] = useState('');
+
   const handleToggle1 = () => {
     setIsExpanded1(!isExpanded1);
   };
 
   const handleTabPress = (tab) => {
     setSelectedTab(tab);
+    setActiveTab(tab);
   };
 
   const renderTabContent = () => {
@@ -136,10 +140,10 @@ export default function IrrigationScreen() {
       <View style={IrrigationPageStyle.topCard}>
         <View style={IrrigationPageStyle.topCardPartSlpit}>
           <Text style={IrrigationPageStyle.farmNameStyle}>{farmName}</Text>
-          <Image resizeMode='cover' style={IrrigationPageStyle.topCardimg} source={{ uri: 'https://cdn.pixabay.com/photo/2017/01/10/03/54/icon-1968240_640.png' }} />
+          <Image resizeMode='cover' style={IrrigationPageStyle.topCardimg} source={images.locationImg} />
         </View>
         <View style={[IrrigationPageStyle.topCardPartSlpit, { justifyContent: 'space-around' }]}>
-          <Image style={[{ left: 70 }, IrrigationPageStyle.topCardimg]} source={{ uri: 'https://cdn.pixabay.com/photo/2019/09/27/08/06/electricity-4507838_1280.png' }} />
+          <Image style={[{ left: 70 }, IrrigationPageStyle.topCardimg]} source={images.ebImg} />
           <Text style={IrrigationPageStyle.dateStyle}>{formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
         </View>
       </View>
@@ -166,7 +170,7 @@ export default function IrrigationScreen() {
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', margin: 10 }}>
           <Text style={{ left: 10, paddingBottom: 6, textAlign: 'center', color: 'black', fontSize: 18, fontWeight: '700', color: 'black' }}>{powerName}</Text>
-          <Image style={{ height: 30, width: 30 }} resizeMode='cover' source={{ uri: ebImg }} />
+          <Image style={{ height: 30, width: 30 }} resizeMode='cover' source={ebImg} />
           <Text style={{ fontSize: 16, fontWeight: '400', color: 'black' }}>  {formatDate(currentDateTime)} {formatTime(currentDateTime)}</Text>
         </View>
       </View>
@@ -179,17 +183,17 @@ export default function IrrigationScreen() {
       {FarmTopCard('Test Farm')}
       <ScrollView>
         <View style={IrrigationPageStyle.CenterCard}>
-          {motorSettingsPart('settings', 'POWER     ', 'https://cdn.pixabay.com/photo/2013/04/01/10/55/electricity-98652_640.png')}
+          {motorSettingsPart('settings', 'POWER     ', images.electricImg)}
           {separator()}
           <View style={IrrigationPageStyle.motorCardCon}>
-            {MotorImgName('Motor-1', 'https://cdn.pixabay.com/photo/2020/09/14/04/52/motor-5569977_640.png')}
+            {MotorImgName('Motor-1', images.motorImg)}
             {motorStatusPart('STATUS', 'OFF-Normal')}
             {powerBtn()}
           </View>
           {separator()}
           <View style={{ top: 20, flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            {valvenText('https://img.icons8.com/?size=1x&id=bQwvmPfjcQeL&format=png', ' + 0')}
-            {calenderImg('https://image.shutterstock.com/image-vector/calendar-image-specific-date-260nw-728810836.jpg')}
+            {valvenText(images.valveImg, ' + 0')}
+            {calenderImg(images.calenderImg)}
             {modeStatusText('')}
           </View>
           {separator()}
@@ -204,17 +208,17 @@ export default function IrrigationScreen() {
           {isExpanded1 && (
             <View>
               <View style={IrrigationPageStyle.tabContainer}>
-                <TouchableOpacity style={IrrigationPageStyle.tabItem} onPress={() => handleTabPress('valve')}>
-                  <Text style={IrrigationPageStyle.tabText}>VALVE</Text>
+                <TouchableOpacity style={[IrrigationPageStyle.tabItem,{borderBottomWidth : activeTab === 'valve' ? 2 : 0 }]} onPress={() => handleTabPress('valve')}>
+                  <Text style={[IrrigationPageStyle.tabText, {color : activeTab === 'valve' ? 'green' : 'black'}]}>VALVE</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={IrrigationPageStyle.tabItem} onPress={() => handleTabPress('sensor')}>
-                  <Text style={IrrigationPageStyle.tabText}>SENSOR</Text>
+                <TouchableOpacity style={[IrrigationPageStyle.tabItem, {borderBottomWidth : activeTab === 'sensor' ? 2 : 0 }]} onPress={() => handleTabPress('sensor')}>
+                  <Text style={[IrrigationPageStyle.tabText , {color : activeTab === 'sensor' ? 'green' : 'black'}]}>SENSOR</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={IrrigationPageStyle.tabItem} onPress={() => handleTabPress('group')}>
-                  <Text style={IrrigationPageStyle.tabText}>GROUP</Text>
+                <TouchableOpacity style={[IrrigationPageStyle.tabItem, {borderBottomWidth : activeTab === 'group' ? 2 : 0 }]} onPress={() => handleTabPress('group')}>
+                  <Text style={[IrrigationPageStyle.tabText, {color : activeTab === 'group' ? 'green' : 'black'}]}>GROUP</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={IrrigationPageStyle.tabItem} onPress={() => handleTabPress('filter')}>
-                  <Text style={IrrigationPageStyle.tabText}>FILTER</Text>
+                <TouchableOpacity style={[IrrigationPageStyle.tabItem, {borderBottomWidth : activeTab === 'filter' ? 2 : 0 }]} onPress={() => handleTabPress('filter')}>
+                  <Text style={[IrrigationPageStyle.tabText, {color : activeTab === 'filter' ? 'green' : 'black'}]}>FILTER</Text>
                 </TouchableOpacity>
               </View>
               <View>
@@ -226,22 +230,22 @@ export default function IrrigationScreen() {
 
 
         <View style={IrrigationPageStyle.CenterCard}>
-          {motorSettingsPart('settings', 'POWER     ', 'https://cdn.pixabay.com/photo/2013/04/01/10/55/electricity-98652_640.png')}
+          {motorSettingsPart('settings', 'POWER     ', images.electricImg)}
           {separator()}
           <View style={IrrigationPageStyle.motorCardCon}>
-            {MotorImgName('Motor-2', 'https://cdn.pixabay.com/photo/2020/09/14/04/52/motor-5569977_640.png')}
+            {MotorImgName('Motor-2', images.motorImg)}
             {motorStatusPart('STATUS', 'OFF-Normal')}
             {powerBtn()}
           </View>
           {separator()}
           <View style={{ top: 20, flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            {valvenText('https://img.icons8.com/?size=1x&id=bQwvmPfjcQeL&format=png', ' + 0')}
-            {calenderImg('https://image.shutterstock.com/image-vector/calendar-image-specific-date-260nw-728810836.jpg')}
+            {valvenText(images.valveImg, ' + 0')}
+            {calenderImg(images.calenderImg)}
             {modeStatusText('')}
           </View>
           {separator()}
           <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <TouchableOpacity onPress={handleToggle1}>
+            <TouchableOpacity onPress={handleToggle2}>
               <Icons style={{ height: 25, width: 25 }} name={isExpanded1 ? 'angle-double-up' : 'angle-double-down'} size={32} color='black' />
             </TouchableOpacity>
           </View>

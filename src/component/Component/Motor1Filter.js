@@ -9,9 +9,11 @@ import { tabBTNGreen } from './Motor1Group';
 export default function Motor1Filter() {
 
     const [selectedTab, setSelectedTab] = useState('');
+    const [activeTab, setActiveTab] = useState();
 
     const handleTabPress = (tab) => {
         setSelectedTab(tab);
+        setActiveTab(tab);
     };
 
     const renderTabContent = () => {
@@ -66,11 +68,11 @@ export default function Motor1Filter() {
     return (
         <View>
             <View style={styles.tabContainer}>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('manual')}>
-                    <Text style={styles.tabText}>MANUAL</Text>
+                <TouchableOpacity style={[styles.tabItem, {borderBottomWidth : activeTab === 'manual' ? 2 : 0 }]} onPress={() => handleTabPress('manual')}>
+                    <Text style={[styles.tabText, {color : activeTab === 'manual' ? 'green' : 'black'}]}>MANUAL</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('auto')}>
-                    <Text style={styles.tabText}>AUTO</Text>
+                <TouchableOpacity style={[styles.tabItem, {borderBottomWidth : activeTab === 'auto' ? 2 : 0 }]} onPress={() => handleTabPress('auto')}>
+                    <Text style={[styles.tabText, {color : activeTab === 'auto' ? 'green' : 'black'}]}>AUTO</Text>
                 </TouchableOpacity>
             </View>
             <View>

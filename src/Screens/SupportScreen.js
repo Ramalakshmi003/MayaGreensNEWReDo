@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { SupportScreenStyles } from '../component/Styles/SupportScreenStyles'
 import { useSelector,useDispatch } from 'react-redux'
 import { addBook, updateBook, deleteBook, deleteAllBooks } from '../reduxToolkit/sliceReducer/BookReducer'
+import { images } from '../assets/images/image'
 
 const SupportScreen = () => {
   const [id, setId] = useState('');
@@ -37,7 +38,7 @@ const SupportScreen = () => {
     try {
       const storedBook = await AsyncStorage.getItem('book');
       if (storedBook !== null) {
-        setBook(JSON.parse(storedBook));
+        // setBook(JSON.parse(storedBook));
       }
     } catch (error) {
       console.log(error);
@@ -180,7 +181,7 @@ const SupportScreen = () => {
       <View style={SupportScreenStyles.body}>
         <ScrollView>
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <Image style={SupportScreenStyles.logo} source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKSBLGRb2YFCayf6J-5UbSLRLuQkMROuMFTQ&usqp=CAU' }} />
+            <Image style={SupportScreenStyles.logo} source={images.supportScreenLogo} />
             <Text style={SupportScreenStyles.text}>To-Do List</Text>
             <TextInput
               style={SupportScreenStyles.input}

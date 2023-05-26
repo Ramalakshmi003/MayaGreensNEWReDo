@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
 import Icon from "react-native-vector-icons/Fontisto";
+import { images } from "../assets/images/image";
 import Icons from 'react-native-vector-icons/AntDesign'
 import ButtonGrey1 from "../component/Component/ButtonGrey1";
 // import { useNavigation } from "@react-navigation/native";
@@ -28,10 +29,7 @@ const LoginScreen = ({navigation}) => {
                 <View>
                     <Image
                         style={{ height: 250, width: "100%", top: 40 }}
-                        source={{
-                            uri:
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrXIvcNc1E311RPrFjVF-idUi7lU6J_mos-A&usqp=CAU"
-                        }}
+                        source={images.appLogo}
                         resizeMode="cover"
                     />
                 </View>

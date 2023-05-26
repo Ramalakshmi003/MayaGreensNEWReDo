@@ -3,11 +3,12 @@ import React from 'react'
 import DashboardData from '../component/Data/DashboardData'
 import LinearGradient from 'react-native-linear-gradient'
 import { DashboardScreenStyles } from '../component/Styles/DashboardScreenStyles'
+import { images } from '../assets/images/image'
 
 const userDetailsCard = (userName, userMobileNo1, userMobileNo2, userImage) => {
     return (
         <View style={DashboardScreenStyles.topcard}>
-            <Image resizeMode='cover' source={{ uri: userImage }} style={DashboardScreenStyles.adminIcon} />
+            <Image resizeMode='cover' source={userImage} style={DashboardScreenStyles.adminIcon} />
             <View style={{ bottom: 30 }}>
                 <Text style={DashboardScreenStyles.header1}>{userName}</Text>
                 <Text style={DashboardScreenStyles.text1}>{userMobileNo1}</Text>
@@ -23,7 +24,7 @@ const userFarmDetails = (userFarmName, temperature) => {
         <View style={DashboardScreenStyles.centerCard}>
             <Text style={[DashboardScreenStyles.header1, { left: 15 }]}>{userFarmName}</Text>
             <View style={{ right: 20, flexDirection: 'row', justifyContent: 'space-around' }}>
-                <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp53HfW_t-wd5SZLNsoPNgf5h8AeFhVDC94g&usqp=CAU' }} style={{ height: 50, width: 50 }} resizeMode='cover' />
+                <Image source={images.cloudImg} style={{ height: 50, width: 50 }} resizeMode='cover' />
                 {/* <Text style={DashboardScreenStyles.text}>{temperature}<Text style={DashboardScreenStyles.superscript}>o</Text>C</Text> */}
                 {/* <Text style={{ top: 10, color: 'black', fontSize: 20, fontWeight: 'bold', letterSpacing: 1, }}>  28  C</Text> */}
                 <Text style={{ top: 10, color: 'black', fontSize: 20, fontWeight: 'bold', letterSpacing: 1, }}>25{degreeSymbol}C</Text>
@@ -45,7 +46,7 @@ const DashboardScreen = ({ navigation }) => {
             <ScrollView>
                 {Gap()}
                 <View>
-                    {userDetailsCard('Test - 1', '8526187881', '8610794589', 'https://media.istockphoto.com/id/1334408594/photo/farmer-in-the-field.jpg?s=612x612&w=0&k=20&c=L-oyfEPkHqy97AcnN8sD13Opdwaa9VfXQJBQc0svYCg=')}
+                    {userDetailsCard('Test - 1', '8526187881', '8610794589', images.farmerImg)}
                     {Gap()}
                     {userFarmDetails('Test Farm', '28')}
                     {/* <View><Text></Text></View> */}

@@ -23,11 +23,11 @@ const Stack = createStackNavigator();
 function NavigationPage() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="SUPPORT">
+        <Stack.Navigator initialRouteName="LOGIN">
           <Stack.Screen name="LOGIN" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="OTPVerification" component={OtpVerficationScreen} options={{ headerShown: false }} />
           <Stack.Screen name="dashboard" component={DrawerNavigator} options={{ headerShown: false }} />
-          <Stack.Screen name="SUPPORT" component={SupportScreen} />
+          {/* <Stack.Screen name="SUPPORT" component={SupportScreen} /> */}
           {/* <Stack.Screen name="IRRIGATION" component={IrrigationScreen} /> */}
         </Stack.Navigator>
       </NavigationContainer>

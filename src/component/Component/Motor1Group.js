@@ -16,6 +16,7 @@ const Motor1Group = () => {
     const [selectedTab, setSelectedTab] = useState('');
     const [groupManualtoggle, setGroupManualToggle] = useState(false);
     const [isExpanded1, setIsExpanded1] = useState(false);
+    const [activeTab, setActiveTab] = useState();
 
     const handleToggle = () => {
         setGroupManualToggle(!groupManualtoggle);
@@ -23,6 +24,7 @@ const Motor1Group = () => {
 
     const handleTabPress = (tab) => {
         setSelectedTab(tab);
+        setActiveTab(tab);
     };
 
     const handleToggle1 = () => {
@@ -180,14 +182,14 @@ const Motor1Group = () => {
     return (
         <View>
             <View style={styles.tabContainer}>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('manual')}>
-                    <Text style={styles.tabText}>MANUAL</Text>
+                <TouchableOpacity style={[styles.tabItem, {borderBottomWidth : activeTab === 'manual' ? 2 : 0 }]} onPress={() => handleTabPress('manual')}>
+                    <Text style={[styles.tabText, {color : activeTab === 'manual' ? 'green' : 'black'}]}>MANUAL</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('cycle')}>
-                    <Text style={styles.tabText}>CYCLE</Text>
+                <TouchableOpacity style={[styles.tabItem, {borderBottomWidth : activeTab === 'cycle' ? 2 : 0 }]} onPress={() => handleTabPress('cycle')}>
+                    <Text style={[styles.tabText, {color : activeTab === 'cycle' ? 'green' : 'black'}]}>CYCLE</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('sensor')}>
-                    <Text style={styles.tabText}>SENSOR</Text>
+                <TouchableOpacity style={[styles.tabItem, {borderBottomWidth : activeTab === 'sensor' ? 2 : 0 }]} onPress={() => handleTabPress('sensor')}>
+                    <Text style={[styles.tabText, {color : activeTab === 'sensor' ? 'green' : 'black'}]}>SENSOR</Text>
                 </TouchableOpacity>
             </View>
             <View>
