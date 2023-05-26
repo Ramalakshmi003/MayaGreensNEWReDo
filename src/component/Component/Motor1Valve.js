@@ -50,58 +50,58 @@ const Motor1Valve = () => {
         setToggle(!toggle);
     };
 
-    // const renderItem = ({ item }) => (
+    const renderItem = ({ item }) => (
 
-    //     <View style={IrrigationPageStyle.item}>
-    //         <View style={IrrigationPageStyle.valveCardParts}>
-    //             {valveName(item.valveName, item.direction)}
-    //             {towerIcon(item.tower)}
-    //             <TouchableOpacity
-    //                 style={[IrrigationPageStyle.button, toggle ? IrrigationPageStyle.activeButton : IrrigationPageStyle.inactiveButton, { left: 4 }]}
-    //                 onPress={handleToggle}>
-    //                 <Text style={IrrigationPageStyle.buttonText}>{toggle ? 'ON' : 'OFF'}</Text>
-    //             </TouchableOpacity>
-    //         </View>
-    //         <View style={IrrigationPageStyle.valveCardParts}>
-    //             {valveIcon('https://img.icons8.com/?size=1x&id=bQwvmPfjcQeL&format=png')}
-    //             {clockTimer('timer-outline','00:00')}
-    //             {thunderIcon(item.thunder)}
-    //         </View>
-    //     </View>
-    // );
+        <View style={IrrigationPageStyle.item}>
+            <View style={IrrigationPageStyle.valveCardParts}>
+                {valveName(item.valveName, item.direction)}
+                {towerIcon(item.tower)}
+                <TouchableOpacity
+                    style={[IrrigationPageStyle.button, toggle ? IrrigationPageStyle.activeButton : IrrigationPageStyle.inactiveButton, { left: 4 }]}
+                    onPress={handleToggle}>
+                    <Text style={IrrigationPageStyle.buttonText}>{toggle ? 'ON' : 'OFF'}</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={IrrigationPageStyle.valveCardParts}>
+                {valveIcon('https://img.icons8.com/?size=1x&id=bQwvmPfjcQeL&format=png')}
+                {clockTimer('timer-outline','00:00')}
+                {thunderIcon(item.thunder)}
+            </View>
+        </View>
+    );
 
 
     return (
-        <View>
-            {
-                Motor1Data.map((item,index) => {
-                    return(
-                        <View key={index} style={IrrigationPageStyle.item}>
-                            <View style={IrrigationPageStyle.valveCardParts}>
-                                {valveName(item.valveName, item.direction)}
-                                {towerIcon(item.tower)}
-                                <TouchableOpacity
-                                    style={[IrrigationPageStyle.button, toggle ? IrrigationPageStyle.activeButton : IrrigationPageStyle.inactiveButton, { left: 4 }]}
-                                    onPress={handleToggle}>
-                                    <Text style={IrrigationPageStyle.buttonText}>{toggle ? 'ON' : 'OFF'}</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={IrrigationPageStyle.valveCardParts}>
-                                {valveIcon('https://img.icons8.com/?size=1x&id=bQwvmPfjcQeL&format=png')}
-                                {clockTimer('timer-outline', '00:00')}
-                                {thunderIcon(item.thunder)}
-                            </View>
-                        </View>
-                    )
-                })
-            }
-        </View>
-        // <FlatList
-        //     data={Motor1Data}
-        //     renderItem={renderItem}
-        //     keyExtractor={(item) => item.id}
-        //     numColumns={2}
-        // />
+        // <View>
+        //     {
+        //         Motor1Data.map((item,index) => {
+        //             return(
+        //                 <View key={index} style={IrrigationPageStyle.item}>
+        //                     <View style={IrrigationPageStyle.valveCardParts}>
+        //                         {valveName(item.valveName, item.direction)}
+        //                         {towerIcon(item.tower)}
+        //                         <TouchableOpacity
+        //                             style={[IrrigationPageStyle.button, toggle ? IrrigationPageStyle.activeButton : IrrigationPageStyle.inactiveButton, { left: 4 }]}
+        //                             onPress={handleToggle}>
+        //                             <Text style={IrrigationPageStyle.buttonText}>{toggle ? 'ON' : 'OFF'}</Text>
+        //                         </TouchableOpacity>
+        //                     </View>
+        //                     <View style={IrrigationPageStyle.valveCardParts}>
+        //                         {valveIcon('https://img.icons8.com/?size=1x&id=bQwvmPfjcQeL&format=png')}
+        //                         {clockTimer('timer-outline', '00:00')}
+        //                         {thunderIcon(item.thunder)}
+        //                     </View>
+        //                 </View>
+        //             )
+        //         })
+        //     }
+        // </View>
+        <FlatList
+            data={Motor1Data}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            numColumns={2}
+        />
     )
 }
 
